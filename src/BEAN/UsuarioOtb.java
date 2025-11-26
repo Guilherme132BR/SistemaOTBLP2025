@@ -25,31 +25,31 @@ public class UsuarioOtb  implements java.io.Serializable {
      private int idUsuarioOtb;
      private String nomeOtb;
      private String apelidoOtb;
-     private String cpfotb;
+     private String cpfOtb;
      private Date dataNascOtb;
      private String senhaOtb;
-     private char ativo;
+     private String ativo;
      private int nivel;
 
     public UsuarioOtb() {
     }
 
 	
-    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfotb, Date dataNascOtb, String senhaOtb, char ativo, int nivel) {
+    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfOtb, Date dataNascOtb, String senhaOtb, String ativo, int nivel) {
         this.idUsuarioOtb = idUsuarioOtb;
         this.nomeOtb = nomeOtb;
         this.apelidoOtb = apelidoOtb;
-        this.cpfotb = cpfotb;
+        this.cpfOtb = cpfOtb;
         this.dataNascOtb = dataNascOtb;
         this.senhaOtb = senhaOtb;
         this.ativo = ativo;
         this.nivel = nivel;
     }
-    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfotb, Date dataNascOtb, String senhaOtb, char ativo, int nivel, Set fornecedorotbs, Set clienteotbs) {
+    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfotb, Date dataNascOtb, String senhaOtb, String ativo, int nivel, Set fornecedorotbs, Set clienteotbs) {
        this.idUsuarioOtb = idUsuarioOtb;
        this.nomeOtb = nomeOtb;
        this.apelidoOtb = apelidoOtb;
-       this.cpfotb = cpfotb;
+       this.cpfOtb = cpfotb;
        this.dataNascOtb = dataNascOtb;
        this.senhaOtb = senhaOtb;
        this.ativo = ativo;
@@ -90,12 +90,12 @@ public class UsuarioOtb  implements java.io.Serializable {
 
     
     @Column(name="CPFOTB", nullable=false, length=45)
-    public String getCpfotb() {
-        return this.cpfotb;
+    public String getCpfOtb() {
+        return this.cpfOtb;
     }
     
-    public void setCpfotb(String cpfotb) {
-        this.cpfotb = cpfotb;
+    public void setCpfOtb(String cpfOtb) {
+        this.cpfOtb = cpfOtb;
     }
 
     @Temporal(TemporalType.DATE)
@@ -120,11 +120,11 @@ public class UsuarioOtb  implements java.io.Serializable {
 
     
     @Column(name="Ativo", nullable=false, length=1)
-    public char getAtivo() {
+    public String getAtivo() {
         return this.ativo;
     }
     
-    public void setAtivo(char ativo) {
+    public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
 
