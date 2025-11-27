@@ -114,8 +114,6 @@ private boolean incluindo;
 
         jLabel1.setText("Id do Usuário");
 
-        jCboFkUsuario.setSelectedIndex(-1);
-
         jLabel2.setText("Id Cliente");
 
         jFmtIdCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +312,7 @@ private boolean incluindo;
                         .addComponent(jBtnIncluir)
                         .addComponent(jBtnAlterar)
                         .addComponent(jBtnExcluir)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -457,6 +455,9 @@ private boolean incluindo;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTxtBairro;
     private javax.swing.JTextField jTxtCidade;
     private javax.swing.JTextField jTxtEndereco;

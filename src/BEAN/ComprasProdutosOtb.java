@@ -1,8 +1,6 @@
 package BEAN;
 // Generated 24/11/2025 23:34:24 by Hibernate Tools 4.3.1
 
-
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,13 +23,13 @@ public class ComprasProdutosOtb  implements java.io.Serializable {
      private ComprasOtb comprasotb;
      private ProdutoOtb produtootb;
      private String quantidadeOtb;
-     private BigDecimal valorUnidadeOtb;
-     private BigDecimal totalOtb;
+     private Double valorUnidadeOtb;
+     private Double totalOtb;
 
     public ComprasProdutosOtb() {
     }
 
-    public ComprasProdutosOtb(int idComprasProdutosOtb,ComprasOtb comprasotb, ProdutoOtb produtootb, String quantidadeOtb, BigDecimal valorUnidadeOtb, BigDecimal totalOtb) {
+    public ComprasProdutosOtb(int idComprasProdutosOtb,ComprasOtb comprasotb, ProdutoOtb produtootb, String quantidadeOtb, Double valorUnidadeOtb, Double totalOtb) {
        this.idComprasProdutosOtb = idComprasProdutosOtb;
        this.comprasotb = comprasotb;
        this.produtootb = produtootb;
@@ -84,21 +82,21 @@ public class ComprasProdutosOtb  implements java.io.Serializable {
 
     
     @Column(name="ValorUnidadeOTB", nullable=false, precision=11)
-    public BigDecimal getValorUnidadeOtb() {
+    public Double getValorUnidadeOtb() {
         return this.valorUnidadeOtb;
     }
     
-    public void setValorUnidadeOtb(BigDecimal valorUnidadeOtb) {
+    public void setValorUnidadeOtb(Double valorUnidadeOtb) {
         this.valorUnidadeOtb = valorUnidadeOtb;
     }
 
     
     @Column(name="TotalOTB", nullable=false, precision=11)
-    public BigDecimal getTotalOtb() {
+    public Double getTotalOtb() {
         return this.totalOtb;
     }
     
-    public void setTotalOtb(BigDecimal totalOtb) {
+    public void setTotalOtb(Double totalOtb) {
         this.totalOtb = totalOtb;
     }
 

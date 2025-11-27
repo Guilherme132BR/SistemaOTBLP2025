@@ -5,19 +5,53 @@
  */
 package View;
 
+import BEAN.ComprasOtb;
+import BEAN.ComprasProdutosOtb;
+import BEAN.ProdutoOtb;
+import DAO.ComprasOtb_DAO;
+import DAO.ProdutoOtb_DAO;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author Guilherme132BR
  */
 public class JDlgComprasProdutos extends javax.swing.JDialog {
 
+    JDlgCompras jDlgCompras;
+    ProdutoOtb_DAO produtoOtb_DAO;
+    ComprasOtb_DAO comprasOtb_DAO;
+    ComprasOtb comprasOtb;
+    
     /**
      * Creates new form JDlgComprasProdutos
      */
     public JDlgComprasProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        comprasOtb_DAO = new ComprasOtb_DAO();
+        produtoOtb_DAO = new ProdutoOtb_DAO();
+        List lista = produtoOtb_DAO.listAll();
+        for (Object item : lista) {
+            jCboProduto.addItem((ProdutoOtb) item);
+        };
+        ProdutoOtb_DAO produtoOtb_DAO = new ProdutoOtb_DAO();
+        List listaProdutos = produtoOtb_DAO.listAll();
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            jCboProduto.addItem((ProdutoOtb) listaProdutos.get(i));
+        }
     }
+    
+    public ComprasProdutosOtb beanView(ComprasProdutosOtb comprasProdutosOtb) {
+        jCboProduto.setSelectedItem(comprasProdutosOtb.getProdutootb());
+        jTxtQuantidade.setText(Integer.toString(Util.strInt(comprasProdutosOtb.getQuantidadeOtb())));
+        jTxtValorUnitario.setText(Double.toString(comprasProdutosOtb.getValorUnidadeOtb()));
+        return comprasProdutosOtb;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +62,102 @@ public class JDlgComprasProdutos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel = new javax.swing.JPanel();
+        jBtnOk = new javax.swing.JButton();
+        jBtnCancelar = new javax.swing.JButton();
+        jTxtValorUnitario = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTxtQuantidade = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jCboProduto = new javax.swing.JComboBox<ProdutoOtb>();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        jBtnOk.setText("Ok");
+        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOkActionPerformed(evt);
+            }
+        });
+        jPanel.add(jBtnOk);
+
+        jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel.add(jBtnCancelar);
+
+        jLabel3.setText("Valor Unitário");
+
+        jLabel2.setText("Quantidade de produtos");
+
+        jLabel1.setText("Produto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTxtQuantidade, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jCboProduto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jTxtValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCboProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
+        // TODO add your handling code here:
+        ComprasProdutosOtb comprasProdutosOtb = new ComprasProdutosOtb();
+        comprasProdutosOtb.setProdutootb((ProdutoOtb) jCboProduto.getSelectedItem());
+        comprasProdutosOtb.setQuantidadeOtb(jTxtQuantidade.getText());
+        comprasProdutosOtb.setValorUnidadeOtb(Util.strDouble(jTxtValorUnitario.getText()));
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+            jDlgCompras.comprasProdutosControllerOtb.addBean(comprasProdutosOtb);
+        } else {
+            jDlgCompras.comprasProdutosControllerOtb.updateBean(jDlgCompras.getSelectedRowProd(), comprasProdutosOtb);
+        }
+        setVisible(false);
+    }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        // TODO add your handling code here:
+
+        Util.mensagem("cancelada a operação");
+        setVisible(false);
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +202,14 @@ public class JDlgComprasProdutos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnCancelar;
+    private javax.swing.JButton jBtnOk;
+    private javax.swing.JComboBox<ProdutoOtb> jCboProduto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel;
+    private javax.swing.JTextField jTxtQuantidade;
+    private javax.swing.JTextField jTxtValorUnitario;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,26 +30,26 @@ public class ComprasOtb  implements java.io.Serializable {
      private ClienteOtb clienteotb;
      private FornecedorOtb fornecedorotb;
      private Date dataComprasOtb;
-     private Double totalGvo;
+     private Double totalotb;
      private Set comprasprodutosotbs = new HashSet(0);
 
     public ComprasOtb() {
     }
 
 	
-    public ComprasOtb(int idComprasOtb, ClienteOtb clienteotb, FornecedorOtb fornecedorotb, Date dataComprasOtb, Double totalGvo) {
+    public ComprasOtb(int idComprasOtb, ClienteOtb clienteotb, FornecedorOtb fornecedorotb, Date dataComprasOtb, Double totalotb) {
         this.idComprasOtb = idComprasOtb;
         this.clienteotb = clienteotb;
         this.fornecedorotb = fornecedorotb;
         this.dataComprasOtb = dataComprasOtb;
-        this.totalGvo = totalGvo;
+        this.totalotb = totalotb;
     }
-    public ComprasOtb(int idComprasOtb, ClienteOtb clienteotb, FornecedorOtb fornecedorotb, Date dataComprasOtb, Double totalGvo, Set comprasprodutosotbs) {
+    public ComprasOtb(int idComprasOtb, ClienteOtb clienteotb, FornecedorOtb fornecedorotb, Date dataComprasOtb, Double totalotb, Set comprasprodutosotbs) {
        this.idComprasOtb = idComprasOtb;
        this.clienteotb = clienteotb;
        this.fornecedorotb = fornecedorotb;
        this.dataComprasOtb = dataComprasOtb;
-       this.totalGvo = totalGvo;
+       this.totalotb = totalotb;
        this.comprasprodutosotbs = comprasprodutosotbs;
     }
    
@@ -97,12 +97,12 @@ public class ComprasOtb  implements java.io.Serializable {
 
     
     @Column(name="TotalGVO", nullable=false, precision=11)
-    public Double getTotalGvo() {
-        return this.totalGvo;
+    public Double getTotalotb() {
+        return this.totalotb;
     }
     
-    public void setTotalGvo(Double totalGvo) {
-        this.totalGvo = totalGvo;
+    public void setTotalotb(Double totalotb) {
+        this.totalotb = totalotb;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="comprasotb")

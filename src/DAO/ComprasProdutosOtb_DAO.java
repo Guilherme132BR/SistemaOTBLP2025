@@ -16,7 +16,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Guilherme132BR
  */
-public class ComprasProdutosOTB_DAO extends DAO_Abstract{
+public class ComprasProdutosOtb_DAO extends DAO_Abstract{
     @Override
     public void insert(Object object) {
     session.beginTransaction();
