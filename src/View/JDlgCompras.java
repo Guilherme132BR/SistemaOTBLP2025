@@ -9,6 +9,7 @@ import BEAN.ClienteOtb;
 import BEAN.ComprasOtb;
 import BEAN.ComprasProdutosOtb;
 import BEAN.FornecedorOtb;
+import Controllers.ComprasProdutosControllerOtb;
 import DAO.ClienteOtb_DAO;
 import DAO.ComprasOtb_DAO;
 import DAO.ComprasProdutosOtb_DAO;
