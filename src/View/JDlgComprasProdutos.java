@@ -51,6 +51,11 @@ public class JDlgComprasProdutos extends javax.swing.JDialog {
         return comprasProdutosOtb;
     }
     
+     public void setTelaAnterior(JDlgCompras jDlgCompras) {
+        this.jDlgCompras = jDlgCompras;
+
+    }
+    
     
 
     /**

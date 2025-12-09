@@ -9,6 +9,7 @@ import BEAN.ClienteOtb;
 import BEAN.ComprasOtb;
 import BEAN.ComprasProdutosOtb;
 import BEAN.FornecedorOtb;
+import Controllers.ComprasControllerOtb;
 import Controllers.ComprasProdutosControllerOtb;
 import DAO.ClienteOtb_DAO;
 import DAO.ComprasOtb_DAO;
@@ -93,8 +94,6 @@ public class JDlgCompras extends javax.swing.JDialog {
         jCboCliente.setSelectedItem(comprasOtb.getClienteotb());
         jCboFornecedor.setSelectedItem(comprasOtb.getFornecedorotb());
         jTxtTotal.setText(String.valueOf(comprasOtb.getTotalotb()));
-
-        ComprasProdutosOtb_DAO comprasProdutosOtb_DAO = new ComprasProdutosOtb_DAO();
         List listaProd = (List) comprasProdutosOtb_DAO.listProdutos(comprasOtb);
 
         comprasProdutosControllerOtb.setList(listaProd);
@@ -382,7 +381,6 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
-        JDlgComprasProdutos jDlgComprasProdutos = new JDlgComprasProdutos(null, true);
         jDlgComprasProdutos.setTitle("Incluir Produtos");
         jDlgComprasProdutos.setTelaAnterior(this);
         jDlgComprasProdutos.setVisible(true);
@@ -390,12 +388,11 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarProdActionPerformed
         // TODO add your handling code here:        
-        JDlgPedidosProdutos jDlgPedidosProdutos = new JDlgPedidosProdutos(null, true);
         jDlgComprasProdutos.setTitle("Alterar Produtos");
         jDlgComprasProdutos.setTelaAnterior(this);
         int linhaSelec = jTable1.getSelectedRow();
-        ComprasProdutosOtb comprasProdutosOtb = (ComprasProdutosOtb) comprasProdutosControllerOtb.getBean(linhaSelec);
-        jDlgComprasProdutos.beanView(comprasProdutosOtb);
+        ComprasProdutosOtb comprasProdutosOtb1 = (ComprasProdutosOtb) comprasProdutosControllerOtb.getBean(linhaSelec);
+        jDlgComprasProdutos.beanView(comprasProdutosOtb1);
         jDlgComprasProdutos.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarProdActionPerformed
 
@@ -458,7 +455,7 @@ public class JDlgCompras extends javax.swing.JDialog {
         
         habilitar(false);
         Util.limparCampos(jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal);
-        comprasProdutosController.setList(new ArrayList());
+        comprasProdutosControllerOtb.setList(new ArrayList());
         comprasOtb = null;
         
     }//GEN-LAST:event_jBtnCancelarActionPerformed
