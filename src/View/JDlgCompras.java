@@ -15,6 +15,7 @@ import DAO.ClienteOtb_DAO;
 import DAO.ComprasOtb_DAO;
 import DAO.ComprasProdutosOtb_DAO;
 import DAO.FornecedorOtb_DAO;
+import Pesquisas.JDlgComprasPesquisa;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -462,8 +463,6 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-        
-        JDlgComprasPesquisa jDlgComprasPesquisa = new JDlgComprasPesquisa(null, true);
         jDlgComprasPesquisa.setTelaAnterior(this);
         jDlgComprasPesquisa.setVisible(true);
         

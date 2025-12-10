@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,7 +31,6 @@ public class FornecedorOtb  implements java.io.Serializable {
      private String nomeOtb;
      private String cpfotb;
      private Date dataNascOtb;
-     private Set comprasotbs = new HashSet(0);
 
     public FornecedorOtb() {
     }
@@ -51,7 +49,6 @@ public class FornecedorOtb  implements java.io.Serializable {
        this.nomeOtb = nomeOtb;
        this.cpfotb = cpfotb;
        this.dataNascOtb = dataNascOtb;
-       this.comprasotbs = comprasotbs;
     }
    
      @Id 
@@ -105,15 +102,7 @@ public class FornecedorOtb  implements java.io.Serializable {
     public void setDataNascOtb(Date dataNascOtb) {
         this.dataNascOtb = dataNascOtb;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="fornecedorotb")
-    public Set getComprasotbs() {
-        return this.comprasotbs;
-    }
     
-    public void setComprasotbs(Set comprasotbs) {
-        this.comprasotbs = comprasotbs;
-    }
     @Override
     public String toString() {
         return (Util.doubleStr(idFornecedorOtb)) + " " + nomeOtb;

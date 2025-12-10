@@ -31,7 +31,6 @@ public class ComprasOtb  implements java.io.Serializable {
      private FornecedorOtb fornecedorotb;
      private Date dataComprasOtb;
      private Double totalotb;
-     private Set comprasprodutosotbs = new HashSet(0);
 
     public ComprasOtb() {
     }
@@ -50,7 +49,6 @@ public class ComprasOtb  implements java.io.Serializable {
        this.fornecedorotb = fornecedorotb;
        this.dataComprasOtb = dataComprasOtb;
        this.totalotb = totalotb;
-       this.comprasprodutosotbs = comprasprodutosotbs;
     }
    
      @Id 
@@ -105,14 +103,6 @@ public class ComprasOtb  implements java.io.Serializable {
         this.totalotb = totalotb;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="comprasotb")
-    public Set getComprasprodutosotbs() {
-        return this.comprasprodutosotbs;
-    }
-    
-    public void setComprasprodutosotbs(Set comprasprodutosotbs) {
-        this.comprasprodutosotbs = comprasprodutosotbs;
-    }
     @Override
     public String toString() {
         return (Util.doubleStr(idComprasOtb));

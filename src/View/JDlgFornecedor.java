@@ -7,6 +7,7 @@ package View;
 import BEAN.FornecedorOtb;
 import BEAN.UsuarioOtb;
 import DAO.FornecedorOtb_DAO;
+import Pesquisas.JDlgFornecedorPesquisa;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

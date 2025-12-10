@@ -7,6 +7,7 @@ package View;
 
 import BEAN.ProdutoOtb;
 import DAO.ProdutoOtb_DAO;
+import Pesquisas.JDlgProdutoPesquisa;
 import tools.Util;
 
 /**

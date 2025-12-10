@@ -45,11 +45,11 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://127.0.0.2:3306/db_guilherminososterberg?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <mapping class="BEAN.Comprasprodutosotb"/>
-    <mapping class="BEAN.Produtootb"/>
-    <mapping class="BEAN.Fornecedorotb"/>
-    <mapping class="BEAN.Comprasotb"/>
-    <mapping class="BEAN.Clienteotb"/>
-    <mapping class="BEAN.Usuariootb"/>
+    <mapping class="BEAN.ComprasProdutosOtb"/>
+    <mapping class="BEAN.ProdutoOtb"/>
+    <mapping class="BEAN.FornecedorOtb"/>
+    <mapping class="BEAN.ComprasOtb"/>
+    <mapping class="BEAN.ClienteOtb"/>
+    <mapping class="BEAN.UsuarioOtb"/>
   </session-factory>
 </hibernate-configuration>

@@ -26,7 +26,6 @@ public class ProdutoOtb  implements java.io.Serializable {
      private Double precoOtb;
      private String estoqueOtb;
      private String marca;
-     private Set comprasprodutosotbs = new HashSet(0);
 
     public ProdutoOtb() {
     }
@@ -45,7 +44,6 @@ public class ProdutoOtb  implements java.io.Serializable {
        this.precoOtb = precoOtb;
        this.estoqueOtb = estoqueOtb;
        this.marca = marca;
-       this.comprasprodutosotbs = comprasprodutosotbs;
     }
    
      @Id 
@@ -98,15 +96,6 @@ public class ProdutoOtb  implements java.io.Serializable {
     
     public void setMarca(String marca) {
         this.marca = marca;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="produtootb")
-    public Set getComprasprodutosotbs() {
-        return this.comprasprodutosotbs;
-    }
-    
-    public void setComprasprodutosotbs(Set comprasprodutosotbs) {
-        this.comprasprodutosotbs = comprasprodutosotbs;
     }
 
         @Override

@@ -9,6 +9,7 @@ import BEAN.ClienteOtb;
 import BEAN.UsuarioOtb;
 import DAO.ClienteOtb_DAO;
 import DAO.UsuarioOtb_DAO;
+import Pesquisas.JDlgClientePesquisa;
 import java.util.List;
 import tools.Util;
 
@@ -33,6 +34,7 @@ private boolean incluindo;
         for (int i = 0; i < listaUsuarios.size(); i++) {
             jCboFkUsuario.addItem((UsuarioOtb) listaUsuarios.get(i));
         }
+        habilitar(false);
     }
     public void habilitar(boolean valor) {
         Util.habilitar(valor, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jCboFkUsuario, jTxtCidade, jTxtEndereco, jTxtPais, jTxtBairro, jBtnCancelar, jBtnConfirmar, jFmtTelefone, jFmtCelular);
@@ -387,7 +389,10 @@ private boolean incluindo;
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-
+        JDlgClientePesquisa jDlgClientePesquisa = new JDlgClientePesquisa(null, true);
+        jDlgClientePesquisa.setTelaAnterior(this);
+        jDlgClientePesquisa.setVisible(true);
+        habilitar(false);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     /**
