@@ -92,4 +92,3 @@ public class FornecedorOtb_DAO extends DAO_Abstract {
 
     }
 }
-
