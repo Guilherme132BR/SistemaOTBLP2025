@@ -96,8 +96,8 @@ public class UsuarioOtb_DAO extends DAO_Abstract {
         session.beginTransaction();
 
         Query query = session.createQuery("FROM UsuarioOtb WHERE NomeOtb = :nomeotb AND Senhaotb = :senhaotb");
-        query.setParameter("nomeOtb", login);
-        query.setParameter("senhaOtb", senha);
+        query.setParameter("nomeotb", login);
+        query.setParameter("senhaotb", senha);
 
         UsuarioOtb usuarioOtb = (UsuarioOtb) query.uniqueResult();
 

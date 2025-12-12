@@ -26,6 +26,8 @@ public class JDlgProduto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Cadastro de Produto");
+        habilitar(false);
     }
     
      public ProdutoOtb viewBean() {

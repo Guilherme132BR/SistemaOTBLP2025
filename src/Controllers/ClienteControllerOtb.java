@@ -67,7 +67,7 @@ public class ClienteControllerOtb extends AbstractTableModel {
         if (column == 2) {
             return "Sobrenome";
         }
-        if (column == 2) {
+        if (column == 3) {
             return "CPF";
         }
 

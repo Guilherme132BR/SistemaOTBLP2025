@@ -18,17 +18,18 @@ import tools.Util;
  * @author Guilherme132BR
  */
 public class JDlgCliente extends javax.swing.JDialog {
-    
-private boolean incluindo;
+
+    private boolean incluindo;
+
     /**
      * Creates new form JDlgCliente
      */
     public JDlgCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de cliente");
-        initComponents();
-        
+
         UsuarioOtb_DAO usuarioOtb_DAO = new UsuarioOtb_DAO();
         List listaUsuarios = usuarioOtb_DAO.listAll();
         for (int i = 0; i < listaUsuarios.size(); i++) {
@@ -36,10 +37,14 @@ private boolean incluindo;
         }
         habilitar(false);
     }
+
     public void habilitar(boolean valor) {
-        Util.habilitar(valor, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jCboFkUsuario, jTxtCidade, jTxtEndereco, jTxtPais, jTxtBairro, jBtnCancelar, jBtnConfirmar, jFmtTelefone, jFmtCelular);
-        Util.habilitar(!valor, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar); }
-    
+
+        Util.habilitar(valor, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jCboFkUsuario, jTxtCidade, jTxtEndereco, jTxtPais, jTxtBairro, jBtnCancelar, jBtnConfirmar, jFmtTelefone, jFmtCelular, jBtnAlterar);
+        Util.habilitar(!valor, jBtnIncluir, jBtnExcluir, jBtnPesquisar);
+
+    }
+
     public ClienteOtb viewBean() {
         ClienteOtb clienteOtb = new ClienteOtb();
         int id = Integer.valueOf(jFmtIdCliente.getText());

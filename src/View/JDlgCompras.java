@@ -177,6 +177,14 @@ public class JDlgCompras extends javax.swing.JDialog {
 
         jLabel3.setText("Fornecedor");
 
+        jCboFornecedor.setMaximumRowCount(10);
+
+        jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTotalActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Cliente");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -382,6 +390,7 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
+        jDlgComprasProdutos = new JDlgComprasProdutos(null, true);
         jDlgComprasProdutos.setTitle("Incluir Produtos");
         jDlgComprasProdutos.setTelaAnterior(this);
         jDlgComprasProdutos.setVisible(true);
@@ -467,6 +476,10 @@ public class JDlgCompras extends javax.swing.JDialog {
         jDlgComprasPesquisa.setVisible(true);
         
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
+
+    private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtTotalActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,6 +7,8 @@ package View;
 
 import BEAN.UsuarioOtb;
 import DAO.UsuarioOtb_DAO;
+import Pesquisas.JDlgProdutoPesquisa;
+import Pesquisas.JDlgUsuarioPesquisa;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import tools.Util;
@@ -23,8 +25,8 @@ public class JDlgUsuario extends javax.swing.JDialog {
      */
     public JDlgUsuario(java.awt.Frame parent, boolean modal) {
          initComponents();
-        Util.habilitar(false, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.habilitar(false, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         setLocationRelativeTo(null);
         setTitle("Cadastro de Usuário");
 
@@ -210,7 +212,7 @@ public class JDlgUsuario extends javax.swing.JDialog {
 
         jLabel6.setText("Data de Nascimento");
 
-        jLabel7.setText("Nome");
+        jLabel7.setText("Apelido/user name");
 
         jTxtApelido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,8 +323,8 @@ public class JDlgUsuario extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar);
-        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.habilitar(true, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar, jFmtIdUsuario);
         incluindo = false;
         
     }//GEN-LAST:event_jBtnAlterarActionPerformed
@@ -359,16 +361,16 @@ public class JDlgUsuario extends javax.swing.JDialog {
             usuarioOtb_DAO.update(usuarioOtb);
         }
 
-        Util.habilitar(false, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.habilitar(false, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         Util.limparCampos(jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel);
         
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(false, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.habilitar(false, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
         Util.mensagem("Operação cancelada");
         Util.limparCampos(jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel);
@@ -376,6 +378,13 @@ public class JDlgUsuario extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
+        
+        JDlgUsuarioPesquisa jDlgUsuarioPesquisa = new JDlgUsuarioPesquisa(null, true);
+        jDlgUsuarioPesquisa.setTelaAnterior(this);
+        jDlgUsuarioPesquisa.setVisible(true);
+        Util.habilitar(true, jFmtIdUsuario, jTxtNome, jTxtApelido, jFmtCPF, jFmtDataNasc, jPwfSenha, jChbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar);
+        
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     /**

@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package View;
+
 import BEAN.FornecedorOtb;
 import BEAN.UsuarioOtb;
 import DAO.FornecedorOtb_DAO;
+import DAO.UsuarioOtb_DAO;
 import Pesquisas.JDlgFornecedorPesquisa;
 import java.text.ParseException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tools.Util;
@@ -20,37 +23,43 @@ import tools.Util;
 public class JDlgFornecedor extends javax.swing.JDialog {
 
     private boolean incluindo;
-    
+
     /**
      * Creates new form JDlgFornecedor
      */
     public JDlgFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Util.habilitar(false, jFmtIdFornecedor, jTxtNome, jFmtData, jFmtCPF, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jCboUsuario,jBtnAlterar);
+        Util.habilitar(false, jFmtIdFornecedor, jTxtNome, jFmtData, jFmtCPF, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jCboUsuario, jBtnAlterar);
         Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         setLocationRelativeTo(null);
         setTitle("Fornecedor");
 
+        UsuarioOtb_DAO usuarioOtb_DAO = new UsuarioOtb_DAO();
+        List listaUsuarios = usuarioOtb_DAO.listAll();
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            jCboUsuario.addItem((UsuarioOtb) listaUsuarios.get(i));
+        }
+
     }
-    
-        public void habilitar(boolean valor) {
-        Util.habilitar(valor, jFmtIdFornecedor, jTxtNome, jFmtCPF, jFmtData, jCboUsuario, jBtnCancelar, jBtnConfirmar);
-        Util.habilitar(!valor, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+
+    public void habilitar(boolean valor) {
+        Util.habilitar(valor, jFmtIdFornecedor, jTxtNome, jFmtCPF, jFmtData, jCboUsuario, jBtnCancelar, jBtnConfirmar, jBtnAlterar);
+        Util.habilitar(!valor, jBtnIncluir, jBtnExcluir, jBtnPesquisar);
     }
-        
-        public void limparCampos() {
+
+    public void limparCampos() {
         Util.limparCampos(jFmtIdFornecedor, jTxtNome, jFmtCPF, jFmtData, jCboUsuario);
     }
-        
-         public FornecedorOtb viewBean() {
+
+    public FornecedorOtb viewBean() {
         FornecedorOtb fornecedorOtb = new FornecedorOtb();
         int id = Integer.valueOf(jFmtIdFornecedor.getText());
         fornecedorOtb.setIdFornecedorOtb(id);
         fornecedorOtb.setNomeOtb(jTxtNome.getText());
         fornecedorOtb.setCpfotb(jFmtCPF.getText());
-        try{
-        fornecedorOtb.setDataNascOtb(Util.strDate(jFmtData.getText()));
+        try {
+            fornecedorOtb.setDataNascOtb(Util.strDate(jFmtData.getText()));
         } catch (ParseException ex) {
             Logger.getLogger(JDlgFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -245,7 +254,7 @@ public class JDlgFornecedor extends javax.swing.JDialog {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -258,6 +267,7 @@ public class JDlgFornecedor extends javax.swing.JDialog {
         jDlgFornecedorPesquisa.setTelaAnterior(this);
         jDlgFornecedorPesquisa.setVisible(true);
         habilitar(false);
+        Util.habilitar(true, jBtnAlterar);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -272,11 +282,13 @@ public class JDlgFornecedor extends javax.swing.JDialog {
         }
 
         habilitar(false);
-        limparCampos(); 
+        limparCampos();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
+
+        Util.habilitar(false, jFmtIdFornecedor);
         habilitar(true);
         incluindo = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
@@ -294,23 +306,23 @@ public class JDlgFornecedor extends javax.swing.JDialog {
         } else {
             Util.mensagem("Exclusão cancelada");
         }
-       
-        limparCampos(); 
+
+        limparCampos();
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
 
         habilitar(true);
-        
-        limparCampos(); 
+
+        limparCampos();
         incluindo = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
         habilitar(false);
-        limparCampos(); 
+        limparCampos();
         Util.mensagem("Operação cancelada");
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
