@@ -63,7 +63,7 @@ public class ClienteOtb_DAO extends DAO_Abstract {
          public List listNome(String NomeOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClienteOtb.class);
-        criteria.add(Restrictions.like("NomeOtb", "%" + NomeOtb + "%"));
+        criteria.add(Restrictions.like("nomeOtb", "%" + NomeOtb + "%"));
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
@@ -73,7 +73,7 @@ public class ClienteOtb_DAO extends DAO_Abstract {
      public List listFkUsuarios(int FkUsuarios) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClienteOtb.class);
-        criteria.add(Restrictions.eq("UsuariosOtb", FkUsuarios));
+        criteria.add(Restrictions.eq("usuariootb", FkUsuarios));
         List results = criteria.list();
         session.getTransaction().commit();  
         return results;
@@ -82,7 +82,7 @@ public class ClienteOtb_DAO extends DAO_Abstract {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClienteOtb.class);
         criteria.add(Restrictions.like("nomeOtb", "%" + NomeOtb + "%"));
-        criteria.add(Restrictions.eq("UsuariosOtb", FkUsuarios));
+        criteria.add(Restrictions.eq("usuariootb", FkUsuarios));
 
         List results = criteria.list();
         session.getTransaction().commit();

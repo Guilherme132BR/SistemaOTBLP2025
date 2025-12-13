@@ -3,7 +3,6 @@ package BEAN;
 
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -119,6 +118,13 @@ public class FornecedorOtb  implements java.io.Serializable {
         }
         return false;
 
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + this.idFornecedorOtb;
+        return hash;
     }
 
 

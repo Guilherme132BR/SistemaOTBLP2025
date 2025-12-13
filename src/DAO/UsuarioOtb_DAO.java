@@ -66,7 +66,7 @@ public class UsuarioOtb_DAO extends DAO_Abstract {
      public List listDataNasc(Date DataNascOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(UsuarioOtb.class);
-        criteria.add(Restrictions.eq("DataNascOtb", DataNascOtb ));
+        criteria.add(Restrictions.eq("dataNascOtb", DataNascOtb ));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;   
@@ -85,8 +85,8 @@ public class UsuarioOtb_DAO extends DAO_Abstract {
     public List listDataNascNome(Date DataNascOtb, String NomeOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(UsuarioOtb.class);
-        criteria.add(Restrictions.eq("dataNascOtb", DataNascOtb));
-        criteria.add(Restrictions.gt("nomeOtb", NomeOtb));
+        criteria.add(Restrictions.eq("DatanascOtb", DataNascOtb));
+        criteria.add(Restrictions.gt("NomeOtb", NomeOtb));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;

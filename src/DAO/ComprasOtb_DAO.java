@@ -64,7 +64,7 @@ public class ComprasOtb_DAO extends DAO_Abstract{
          public List listData(Date dataComprasOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ComprasOtb.class);
-        criteria.add(Restrictions.eq("DataComprasOtb", dataComprasOtb ));
+        criteria.add(Restrictions.eq("dataComprasOtb", dataComprasOtb ));
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
@@ -82,8 +82,8 @@ public class ComprasOtb_DAO extends DAO_Abstract{
     public List listDataValor(Date dataComprasOtb, Double totalOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ComprasOtb.class);
-        criteria.add(Restrictions.eq("DataComprasOtb", dataComprasOtb ));        
-        criteria.add(Restrictions.ge("TotalOtb", totalOtb));
+        criteria.add(Restrictions.eq("dataComprasOtb", dataComprasOtb ));        
+        criteria.add(Restrictions.ge("totalOtb", totalOtb));
 
         List results = criteria.list();
         session.getTransaction().commit();

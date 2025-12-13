@@ -149,6 +149,9 @@ public class JDlgComprasProdutos extends javax.swing.JDialog {
         comprasProdutosOtb.setProdutootb((ProdutoOtb) jCboProduto.getSelectedItem());
         comprasProdutosOtb.setQuantidadeOtb(jTxtQuantidade.getText());
         comprasProdutosOtb.setValorUnidadeOtb(Util.strDouble(jTxtValorUnitario.getText()));
+        double valorUnidade2 = Util.strDouble(jTxtValorUnitario.getText());
+        double Quantidade2 = (Util.strDouble(jTxtQuantidade.getText()));
+        comprasProdutosOtb.setTotalOtb(Quantidade2 * valorUnidade2);
         if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
             jDlgCompras.comprasProdutosControllerOtb.addBean(comprasProdutosOtb);
         } else {

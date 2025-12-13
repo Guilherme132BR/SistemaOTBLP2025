@@ -91,7 +91,7 @@ public class ComprasProdutosOtb  implements java.io.Serializable {
     }
 
     
-    @Column(name="TotalOTB", nullable=false, precision=11)
+    @Column(name="TotalOTB", nullable=true, precision=11)
     public Double getTotalOtb() {
         return this.totalOtb;
     }

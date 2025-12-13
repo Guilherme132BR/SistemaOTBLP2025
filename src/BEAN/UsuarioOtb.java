@@ -26,7 +26,7 @@ public class UsuarioOtb  implements java.io.Serializable {
      private String nomeOtb;
      private String apelidoOtb;
      private String cpfOtb;
-     private Date dataNascOtb;
+     private Date dataNascOTB;
      private String senhaOtb;
      private String ativo;
      private int nivel;
@@ -35,22 +35,22 @@ public class UsuarioOtb  implements java.io.Serializable {
     }
 
 	
-    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfOtb, Date dataNascOtb, String senhaOtb, String ativo, int nivel) {
+    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfOtb, Date dataNascOTB, String senhaOtb, String ativo, int nivel) {
         this.idUsuarioOtb = idUsuarioOtb;
         this.nomeOtb = nomeOtb;
         this.apelidoOtb = apelidoOtb;
         this.cpfOtb = cpfOtb;
-        this.dataNascOtb = dataNascOtb;
+        this.dataNascOTB = dataNascOTB;
         this.senhaOtb = senhaOtb;
         this.ativo = ativo;
         this.nivel = nivel;
     }
-    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfotb, Date dataNascOtb, String senhaOtb, String ativo, int nivel, Set fornecedorotbs, Set clienteotbs) {
+    public UsuarioOtb(int idUsuarioOtb, String nomeOtb, String apelidoOtb, String cpfotb, Date dataNascOTB, String senhaOtb, String ativo, int nivel, Set fornecedorotbs, Set clienteotbs) {
        this.idUsuarioOtb = idUsuarioOtb;
        this.nomeOtb = nomeOtb;
        this.apelidoOtb = apelidoOtb;
        this.cpfOtb = cpfotb;
-       this.dataNascOtb = dataNascOtb;
+       this.dataNascOTB = dataNascOTB;
        this.senhaOtb = senhaOtb;
        this.ativo = ativo;
        this.nivel = nivel;
@@ -59,7 +59,7 @@ public class UsuarioOtb  implements java.io.Serializable {
      @Id 
 
     
-    @Column(name="IdUsuarioOTB", unique=true, nullable=false)
+    @Column(name="IdUsuarioOtb", unique=true, nullable=false)
     public int getIdUsuarioOtb() {
         return this.idUsuarioOtb;
     }
@@ -99,13 +99,13 @@ public class UsuarioOtb  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="DataNascOTB", nullable=false, length=10)
+    @Column(name="DataNascOtb", nullable=false, length=10)
     public Date getDataNascOtb() {
-        return this.dataNascOtb;
+        return this.dataNascOTB;
     }
     
-    public void setDataNascOtb(Date dataNascOtb) {
-        this.dataNascOtb = dataNascOtb;
+    public void setDataNascOtb(Date dataNascOTB) {
+        this.dataNascOTB = dataNascOTB;
     }
 
     
@@ -141,7 +141,7 @@ public class UsuarioOtb  implements java.io.Serializable {
     @Override
     public String toString() {
         return (Util.doubleStr(idUsuarioOtb))  +  " "  + nomeOtb;
-    } // O método toString() é usado para fornecer uma representação em forma de string do objeto.
+    } 
 
     @Override
     public boolean equals(Object object) {

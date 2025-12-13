@@ -3,6 +3,7 @@ package BEAN;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -94,7 +95,7 @@ public class ComprasOtb  implements java.io.Serializable {
     }
 
     
-    @Column(name="TotalOtb", nullable=false, precision=11)
+    @Column(name="TotalOTB", nullable=true, precision=11)
     public Double getTotalotb() {
         return this.totalotb;
     }

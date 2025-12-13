@@ -64,7 +64,7 @@ public class ProdutoOtb_DAO extends DAO_Abstract {
     public List listNome(String NomeOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ProdutoOtb.class);
-        criteria.add(Restrictions.like("NomeOtb", "%" + NomeOtb + "%"));
+        criteria.add(Restrictions.like("nomeOtb", "%" + NomeOtb + "%"));
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
@@ -74,7 +74,7 @@ public class ProdutoOtb_DAO extends DAO_Abstract {
     public List listPreco(Double PrecoOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ProdutoOtb.class);
-        criteria.add(Restrictions.ge("PrecoOtb", PrecoOtb));
+        criteria.add(Restrictions.ge("precoOtb", PrecoOtb));
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
@@ -83,8 +83,8 @@ public class ProdutoOtb_DAO extends DAO_Abstract {
     public List listNomePreco(String NomeOtb, Double PrecoOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ProdutoOtb.class);
-        criteria.add(Restrictions.like("NomeOtb", "%" + NomeOtb + "%"));
-        criteria.add(Restrictions.ge("PrecoOtb", PrecoOtb));
+        criteria.add(Restrictions.like("nomeOtb", "%" + NomeOtb + "%"));
+        criteria.add(Restrictions.ge("precoOtb", PrecoOtb));
 
         List results = criteria.list();
         session.getTransaction().commit();

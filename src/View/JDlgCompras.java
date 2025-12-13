@@ -39,7 +39,7 @@ public class JDlgCompras extends javax.swing.JDialog {
     ClienteOtb clienteOtb;
     JDlgComprasPesquisa jDlgComprasPesquisa;
     JDlgComprasProdutos jDlgComprasProdutos;
-    
+
     /**
      * Creates new form JDlgCompras
      */
@@ -49,10 +49,9 @@ public class JDlgCompras extends javax.swing.JDialog {
         setTitle("Compras");
         habilitar(false);
         setLocationRelativeTo(null);
-        
-        
+
         comprasOtb_DAO = new ComprasOtb_DAO();
-        
+
         ClienteOtb_DAO clienteOtb_DAO = new ClienteOtb_DAO();
         List listaCliente = clienteOtb_DAO.listAll();
         for (int i = 0; i < listaCliente.size(); i++) {
@@ -63,19 +62,19 @@ public class JDlgCompras extends javax.swing.JDialog {
         for (int i = 0; i < listaFornecedor.size(); i++) {
             jCboFornecedor.addItem((FornecedorOtb) listaFornecedor.get(i));
         }
-        
-         comprasProdutosControllerOtb = new ComprasProdutosControllerOtb();
+
+        comprasProdutosControllerOtb = new ComprasProdutosControllerOtb();
         List listaComprasProdutosOtb = new ArrayList();
         comprasProdutosControllerOtb.setList(listaComprasProdutosOtb);
         jTable1.setModel(comprasProdutosControllerOtb);
     }
-    
-        public void habilitar(boolean valor) {
+
+    public void habilitar(boolean valor) {
         Util.habilitar(valor, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
         Util.habilitar(!valor, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
     }
-        
-        public ComprasOtb viewBean() {
+
+    public ComprasOtb viewBean() {
         ComprasOtb comprasOtb = new ComprasOtb();
         comprasOtb.setIdComprasOtb(Integer.parseInt(jTxtNumCompra.getText()));
         try {
@@ -85,11 +84,12 @@ public class JDlgCompras extends javax.swing.JDialog {
         }
         comprasOtb.setClienteotb((ClienteOtb) jCboCliente.getSelectedItem());
         comprasOtb.setFornecedorotb((FornecedorOtb) jCboFornecedor.getSelectedItem());
-        comprasOtb.setTotalotb(Util.strDouble(jTxtTotal.getText()));
+        double total = Util.strDouble(jTxtTotal.getText());
+        comprasOtb.setTotalotb(total);
         return comprasOtb;
     }
-        
-        public void beanView(ComprasOtb comprasOtb) {
+
+    public void beanView(ComprasOtb comprasOtb) {
         jTxtNumCompra.setText(String.valueOf(comprasOtb.getIdComprasOtb()));
         jFmtData.setText(Util.dateStr(comprasOtb.getDataComprasOtb()));
         jCboCliente.setSelectedItem(comprasOtb.getClienteotb());
@@ -103,7 +103,6 @@ public class JDlgCompras extends javax.swing.JDialog {
     public int getSelectedRowProd() {
         return jTable1.getSelectedRow();
     }
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -178,6 +177,11 @@ public class JDlgCompras extends javax.swing.JDialog {
         jLabel3.setText("Fornecedor");
 
         jCboFornecedor.setMaximumRowCount(10);
+        jCboFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCboFornecedorActionPerformed(evt);
+            }
+        });
 
         jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,11 +422,23 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
+
+        ComprasProdutosOtb comprasProdutosOtb;
+        for (int linha = 0; linha < jTable1.getRowCount(); linha++) {
+            comprasProdutosOtb = comprasProdutosControllerOtb.getBean(linha);
+            comprasProdutosOtb_DAO.delete(comprasProdutosOtb);
+        }
+        comprasOtb_DAO.delete(comprasOtb);
+
+        Util.limparCampos(jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal);
+        comprasProdutosControllerOtb.setList(new ArrayList());
+        comprasOtb = null;
+
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        
+
         habilitar(true);
 
         comprasOtb_DAO = new ComprasOtb_DAO();
@@ -436,8 +452,8 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        
-                comprasOtb = viewBean();
+
+        comprasOtb = viewBean();
         if (incluindo == true) {
             comprasOtb_DAO.insert(comprasOtb);
             comprasProdutosOtb_DAO = new ComprasProdutosOtb_DAO();
@@ -462,24 +478,30 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        
+
         habilitar(false);
         Util.limparCampos(jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal);
         comprasProdutosControllerOtb.setList(new ArrayList());
         comprasOtb = null;
-        
+
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
+
+        JDlgComprasPesquisa jDlgComprasPesquisa = new JDlgComprasPesquisa(null, true);
         jDlgComprasPesquisa.setTelaAnterior(this);
         jDlgComprasPesquisa.setVisible(true);
-        
+
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTotalActionPerformed
+
+    private void jCboFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCboFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
