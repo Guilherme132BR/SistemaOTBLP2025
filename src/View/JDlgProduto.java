@@ -17,8 +17,7 @@ import tools.Util;
 public class JDlgProduto extends javax.swing.JDialog {
 
     private boolean incluindo;
-    
-    
+
     /**
      * Creates new form JDlgProduto
      */
@@ -27,10 +26,11 @@ public class JDlgProduto extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de Produto");
-        habilitar(false);
+        Util.habilitar(false, jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
     }
-    
-     public ProdutoOtb viewBean() {
+
+    public ProdutoOtb viewBean() {
         ProdutoOtb produtoOtb = new ProdutoOtb();
         produtoOtb.setIdProdutoOtb(Util.strInt(jFmtIdProduto.getText()));
         if (jCboDisponivel.getSelectedIndex() == 1) {
@@ -41,12 +41,12 @@ public class JDlgProduto extends javax.swing.JDialog {
         produtoOtb.setNomeOtb(jTxtNome.getText());
         produtoOtb.setPrecoOtb(Util.strDouble(jFmtValor.getText()));
         produtoOtb.setMarca(jTxtMarca.getText());
-        
+
         return produtoOtb;
     }
-     
-     public void beanView(ProdutoOtb produtoOtb) {
-        
+
+    public void beanView(ProdutoOtb produtoOtb) {
+
         String id = String.valueOf(produtoOtb.getIdProdutoOtb());
         jFmtIdProduto.setText(id);
         if (produtoOtb.getEstoqueOtb() == "Disponivel") {
@@ -58,21 +58,15 @@ public class JDlgProduto extends javax.swing.JDialog {
         jTxtNome.setText(produtoOtb.getNomeOtb());
         jTxtMarca.setText(produtoOtb.getMarca());
     }
-     
-     public void limparCampos() {
-     
-     Util.limparCampos(jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca);
-         
-     };
-     
-     public void habilitar(boolean valor) {
-        Util.habilitar(valor, jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(!valor, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-    }
-     
-     
- 
 
+    public void limparCampos() {
+
+        Util.limparCampos(jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca);
+
+    }
+
+    ;
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -260,12 +254,14 @@ public class JDlgProduto extends javax.swing.JDialog {
         JDlgProdutoPesquisa jDlgProdutoPesquisa = new JDlgProdutoPesquisa(null, true);
         jDlgProdutoPesquisa.setTelaAnterior(this);
         jDlgProdutoPesquisa.setVisible(true);
-        habilitar(false);
+        Util.habilitar(false, jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnIncluir);
+        Util.habilitar(true, jBtnPesquisar, jBtnAlterar, jBtnExcluir, jBtnCancelar);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
+        Util.habilitar(false, jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         limparCampos();
         Util.mensagem("Operação cancelada");
     }//GEN-LAST:event_jBtnCancelarActionPerformed
@@ -280,17 +276,17 @@ public class JDlgProduto extends javax.swing.JDialog {
         } else {
             produtoOtb_DAO.update(produtoOtb);
         }
-
-        habilitar(false);
+        Util.habilitar(false, jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         limparCampos();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
+        Util.habilitar(false, jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
         if (Util.perguntar("deseja excluir o registro?") == true) {
-            habilitar(false);
             ProdutoOtb produtoOtb = viewBean();
             ProdutoOtb_DAO produtoOtb_DAO = new ProdutoOtb_DAO();
             produtoOtb_DAO.delete(produtoOtb);
@@ -304,14 +300,16 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
+        Util.habilitar(true, jTxtNome, jFmtValor, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir, jFmtIdProduto);
         incluindo = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
 
-        habilitar(true);
+        Util.habilitar(true, jTxtNome, jFmtValor, jFmtIdProduto, jCboDisponivel, jTxtMarca, jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
         limparCampos();
         incluindo = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed

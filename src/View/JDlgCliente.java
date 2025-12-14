@@ -29,20 +29,14 @@ public class JDlgCliente extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de cliente");
+        Util.habilitar(false, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtPais, jTxtEndereco, jCboFkUsuario, jTxtBairro, jFmtCelular, jFmtTelefone, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
         UsuarioOtb_DAO usuarioOtb_DAO = new UsuarioOtb_DAO();
         List listaUsuarios = usuarioOtb_DAO.listAll();
         for (int i = 0; i < listaUsuarios.size(); i++) {
             jCboFkUsuario.addItem((UsuarioOtb) listaUsuarios.get(i));
         }
-        habilitar(false);
-    }
-
-    public void habilitar(boolean valor) {
-
-        Util.habilitar(valor, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jCboFkUsuario, jTxtCidade, jTxtEndereco, jTxtPais, jTxtBairro, jBtnCancelar, jBtnConfirmar, jFmtTelefone, jFmtCelular, jBtnAlterar);
-        Util.habilitar(!valor, jBtnIncluir, jBtnExcluir, jBtnPesquisar);
-
     }
 
     public ClienteOtb viewBean() {
@@ -352,22 +346,24 @@ public class JDlgCliente extends javax.swing.JDialog {
             clienteOtb_DAO.update(clienteOtb);
         }
 
-        habilitar(false);
+        Util.habilitar(false, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtPais, jTxtEndereco, jCboFkUsuario, jTxtBairro, jFmtCelular, jFmtTelefone, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         Util.limparCampos(jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtEndereco, jTxtPais, jTxtBairro, jFmtTelefone, jFmtCelular);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
+        Util.habilitar(true, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtPais, jTxtEndereco, jCboFkUsuario, jTxtBairro, jFmtCelular, jFmtTelefone, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnExcluir, jBtnAlterar, jFmtIdCliente);
         incluindo = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true);
+        Util.habilitar(false, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtPais, jTxtEndereco, jCboFkUsuario, jTxtBairro, jFmtCelular, jFmtTelefone, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
         if (Util.perguntar("deseja excluir o registro?") == true) {
-            habilitar(false);
             ClienteOtb clienteOtb = viewBean();
             ClienteOtb_DAO clienteOtb_DAO = new ClienteOtb_DAO();
             clienteOtb_DAO.delete(clienteOtb);
@@ -381,14 +377,17 @@ public class JDlgCliente extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
 
-        habilitar(true);
+        Util.habilitar(true, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtPais, jTxtEndereco, jCboFkUsuario, jTxtBairro, jFmtCelular, jFmtTelefone, jBtnCancelar, jBtnConfirmar);
+        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnExcluir, jBtnAlterar);
+        
         Util.limparCampos(jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtEndereco, jTxtPais, jTxtBairro, jFmtTelefone, jFmtCelular);
         incluindo = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
+        Util.habilitar(false, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtPais, jTxtEndereco, jCboFkUsuario, jTxtBairro, jFmtCelular, jFmtTelefone, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         Util.limparCampos(jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtEndereco, jTxtPais, jTxtBairro, jFmtTelefone, jFmtCelular);
         Util.mensagem("Operação cancelada");
     }//GEN-LAST:event_jBtnCancelarActionPerformed
@@ -397,7 +396,8 @@ public class JDlgCliente extends javax.swing.JDialog {
         JDlgClientePesquisa jDlgClientePesquisa = new JDlgClientePesquisa(null, true);
         jDlgClientePesquisa.setTelaAnterior(this);
         jDlgClientePesquisa.setVisible(true);
-        habilitar(false);
+        Util.habilitar(false, jFmtIdCliente, jTxtNome, jTxtSobrenome, jFmtCpf, jTxtCidade, jTxtPais, jTxtEndereco, jCboFkUsuario, jTxtBairro, jFmtCelular, jFmtTelefone, jBtnConfirmar, jBtnIncluir);
+        Util.habilitar(true, jBtnPesquisar, jBtnAlterar, jBtnCancelar, jBtnExcluir);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     /**
@@ -465,9 +465,6 @@ public class JDlgCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTxtBairro;
     private javax.swing.JTextField jTxtCidade;
     private javax.swing.JTextField jTxtEndereco;

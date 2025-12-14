@@ -43,11 +43,6 @@ public class JDlgFornecedor extends javax.swing.JDialog {
 
     }
 
-    public void habilitar(boolean valor) {
-        Util.habilitar(valor, jFmtIdFornecedor, jTxtNome, jFmtCPF, jFmtData, jCboUsuario, jBtnCancelar, jBtnConfirmar, jBtnAlterar);
-        Util.habilitar(!valor, jBtnIncluir, jBtnExcluir, jBtnPesquisar);
-    }
-
     public void limparCampos() {
         Util.limparCampos(jFmtIdFornecedor, jTxtNome, jFmtCPF, jFmtData, jCboUsuario);
     }
@@ -266,8 +261,8 @@ public class JDlgFornecedor extends javax.swing.JDialog {
         JDlgFornecedorPesquisa jDlgFornecedorPesquisa = new JDlgFornecedorPesquisa(null, true);
         jDlgFornecedorPesquisa.setTelaAnterior(this);
         jDlgFornecedorPesquisa.setVisible(true);
-        habilitar(false);
-        Util.habilitar(true, jBtnAlterar);
+        Util.habilitar(false, jFmtIdFornecedor, jTxtNome, jFmtData, jFmtCPF, jBtnConfirmar, jCboUsuario, jBtnIncluir);
+        Util.habilitar(true, jBtnPesquisar, jBtnAlterar, jBtnExcluir, jBtnCancelar);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -281,24 +276,26 @@ public class JDlgFornecedor extends javax.swing.JDialog {
             fornecedorOtb_DAO.update(fornecedorOtb);
         }
 
-        habilitar(false);
+        Util.habilitar(false, jFmtIdFornecedor, jTxtNome, jFmtData, jFmtCPF, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jCboUsuario, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         limparCampos();
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-
-        Util.habilitar(false, jFmtIdFornecedor);
-        habilitar(true);
+        
+        Util.habilitar(true, jTxtNome, jFmtData, jFmtCPF, jBtnCancelar, jBtnConfirmar, jCboUsuario);
+        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir, jFmtIdFornecedor);
+        
         incluindo = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
+        Util.habilitar(false, jFmtIdFornecedor, jTxtNome, jFmtData, jFmtCPF, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jCboUsuario, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
         if (Util.perguntar("deseja excluir o registro?") == true) {
-            habilitar(false);
             FornecedorOtb fornecedorGvo = viewBean();
             FornecedorOtb_DAO fornecedorOtb_DAO = new FornecedorOtb_DAO();
             fornecedorOtb_DAO.delete(fornecedorGvo);
@@ -313,7 +310,8 @@ public class JDlgFornecedor extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
 
-        habilitar(true);
+        Util.habilitar(true, jFmtIdFornecedor, jTxtNome, jFmtData, jFmtCPF, jBtnCancelar, jBtnConfirmar, jCboUsuario);
+        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnAlterar, jBtnExcluir);
 
         limparCampos();
         incluindo = true;
@@ -321,7 +319,8 @@ public class JDlgFornecedor extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        habilitar(false);
+        Util.habilitar(false, jFmtIdFornecedor, jTxtNome, jFmtData, jFmtCPF, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jCboUsuario, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         limparCampos();
         Util.mensagem("Operação cancelada");
     }//GEN-LAST:event_jBtnCancelarActionPerformed

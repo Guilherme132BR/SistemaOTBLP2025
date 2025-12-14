@@ -47,7 +47,10 @@ public class JDlgCompras extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Compras");
-        habilitar(false);
+
+        Util.habilitar(false, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
+
         setLocationRelativeTo(null);
 
         comprasOtb_DAO = new ComprasOtb_DAO();
@@ -67,11 +70,6 @@ public class JDlgCompras extends javax.swing.JDialog {
         List listaComprasProdutosOtb = new ArrayList();
         comprasProdutosControllerOtb.setList(listaComprasProdutosOtb);
         jTable1.setModel(comprasProdutosControllerOtb);
-    }
-
-    public void habilitar(boolean valor) {
-        Util.habilitar(valor, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
-        Util.habilitar(!valor, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
     }
 
     public ComprasOtb viewBean() {
@@ -412,7 +410,9 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        habilitar(true);
+        Util.habilitar(true, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(false, jBtnIncluir, jBtnPesquisar, jBtnExcluir, jBtnAlterar);
+
         comprasProdutosControllerOtb.setList(new ArrayList());
         jTxtNumCompra.grabFocus();
         incluindo = true;
@@ -422,7 +422,8 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-
+        Util.habilitar(false, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         ComprasProdutosOtb comprasProdutosOtb;
         for (int linha = 0; linha < jTable1.getRowCount(); linha++) {
             comprasProdutosOtb = comprasProdutosControllerOtb.getBean(linha);
@@ -439,7 +440,8 @@ public class JDlgCompras extends javax.swing.JDialog {
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
 
-        habilitar(true);
+        Util.habilitar(true, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar, jTxtNumCompra);
 
         comprasOtb_DAO = new ComprasOtb_DAO();
         ComprasProdutosOtb comprasProdutosOtb;
@@ -452,6 +454,9 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
+
+        Util.habilitar(false, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
         comprasOtb = viewBean();
         if (incluindo == true) {
@@ -479,7 +484,8 @@ public class JDlgCompras extends javax.swing.JDialog {
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
 
-        habilitar(false);
+        Util.habilitar(false, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnCancelar, jBtnAlterar, jBtnExcluir, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         Util.limparCampos(jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal);
         comprasProdutosControllerOtb.setList(new ArrayList());
         comprasOtb = null;
@@ -488,6 +494,9 @@ public class JDlgCompras extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
+
+        Util.habilitar(false, jTxtNumCompra, jFmtData, jCboCliente, jCboFornecedor, jTxtTotal, jBtnConfirmar, jBtnIncluir, jBtnIncluirProd, jBtnAlterarProd, jBtnExcluirProd);
+        Util.habilitar(true, jBtnExcluir, jBtnAlterar, jBtnCancelar, jBtnPesquisar);
 
         JDlgComprasPesquisa jDlgComprasPesquisa = new JDlgComprasPesquisa(null, true);
         jDlgComprasPesquisa.setTelaAnterior(this);
