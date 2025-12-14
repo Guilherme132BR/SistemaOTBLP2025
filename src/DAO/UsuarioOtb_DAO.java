@@ -63,15 +63,15 @@ public class UsuarioOtb_DAO extends DAO_Abstract {
         return (ArrayList) lista;
     }
 
-     public List listDataNasc(Date DataNascOtb) {
+    public List listDataNasc(Date DataNascOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(UsuarioOtb.class);
-        criteria.add(Restrictions.eq("dataNascOtb", DataNascOtb ));
+        criteria.add(Restrictions.eq("dataNascOtb", DataNascOtb));
         List lista = criteria.list();
         session.getTransaction().commit();
-        return lista;   
-    
-}
+        return lista;
+
+    }
 
     public List listNome(String NomeOtb) {
         session.beginTransaction();
@@ -85,14 +85,14 @@ public class UsuarioOtb_DAO extends DAO_Abstract {
     public List listDataNascNome(Date DataNascOtb, String NomeOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(UsuarioOtb.class);
-        criteria.add(Restrictions.eq("DatanascOtb", DataNascOtb));
-        criteria.add(Restrictions.gt("NomeOtb", NomeOtb));
+        criteria.add(Restrictions.eq("dataNascOtb", DataNascOtb));
+        criteria.add(Restrictions.gt("nomeOtb", NomeOtb));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
-    
-        public UsuarioOtb LoginUsuario(String login, String senha) {
+
+    public UsuarioOtb LoginUsuario(String login, String senha) {
         session.beginTransaction();
 
         Query query = session.createQuery("FROM UsuarioOtb WHERE NomeOtb = :nomeotb AND Senhaotb = :senhaotb");

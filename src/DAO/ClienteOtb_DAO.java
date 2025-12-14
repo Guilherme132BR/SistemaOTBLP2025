@@ -16,36 +16,37 @@ import org.hibernate.criterion.Restrictions;
  * @author Guilherme132BR
  */
 public class ClienteOtb_DAO extends DAO_Abstract {
+
     @Override
     public void insert(Object object) {
-    session.beginTransaction();
-    session.save(object);
-    session.getTransaction().commit();
+        session.beginTransaction();
+        session.save(object);
+        session.getTransaction().commit();
     }
 
     @Override
     public void update(Object object) {
-    session.beginTransaction();
-    session.flush();
-    session.clear();
-    session.update(object);
-    session.getTransaction().commit();
+        session.beginTransaction();
+        session.flush();
+        session.clear();
+        session.update(object);
+        session.getTransaction().commit();
     }
 
     @Override
     public void delete(Object object) {
-    session.beginTransaction(); 
-    session.flush();
-    session.clear();
-    session.delete(object);
-    session.getTransaction().commit();
+        session.beginTransaction();
+        session.flush();
+        session.clear();
+        session.delete(object);
+        session.getTransaction().commit();
     }
 
     @Override
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClienteOtb.class);
-        criteria.add(Restrictions.eq("IdClienteotb", id)); 
+        criteria.add(Restrictions.eq("IdClienteotb", id));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
@@ -57,27 +58,28 @@ public class ClienteOtb_DAO extends DAO_Abstract {
         Criteria criteria = session.createCriteria(ClienteOtb.class);
         List lista = criteria.list();
         session.getTransaction().commit();
-        return(ArrayList) lista;
+        return (ArrayList) lista;
     }
-    
-         public List listNome(String NomeOtb) {
+
+    public List listNome(String NomeOtb) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClienteOtb.class);
         criteria.add(Restrictions.like("nomeOtb", "%" + NomeOtb + "%"));
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
-    
-    
-}
-     public List listFkUsuarios(int FkUsuarios) {
+
+    }
+
+    public List listFkUsuarios(int FkUsuarios) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClienteOtb.class);
         criteria.add(Restrictions.eq("usuariootb", FkUsuarios));
         List results = criteria.list();
-        session.getTransaction().commit();  
+        session.getTransaction().commit();
         return results;
-     }    
+    }
+
     public List listNomeFkUsuarios(String NomeOtb, Object FkUsuarios) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(ClienteOtb.class);
@@ -87,7 +89,6 @@ public class ClienteOtb_DAO extends DAO_Abstract {
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
-    
-    
-}
+
+    }
 }
